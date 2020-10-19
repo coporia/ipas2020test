@@ -8,6 +8,10 @@ root@kali:~#  nmap
 3.OS???
 4.是否有漏洞
 5.Exploitation
+XP防禦指令
+netstart -ano
+---->找出對方的PORT 讓她滾出去
+
 
 
 
